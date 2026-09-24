@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loginhelper - 't Klavernest</title>
+
+<style>
+
+/* Kleuren gebaseerd op logo en stijl WelkomKlavernest */
+:root {
+  --groen: #5CB838;
+  --groen-donker: #469229;
+  --blauw: #337AB7;
+  --blauw-donker: #1E4E79;
+  --lichtblauw: #EAF6FF;
+  --wit: #ffffff;
+  --rood: #E74C3C;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Zachte verloopachtergrond geïnspireerd op de Welkom-banner */
+  background: linear-gradient(180deg, #A1C4FD 0%, #C2E9FB 60%, #D4FC79 100%);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Header / Hoofding Stijl */
+.header {
+  background: var(--wit);
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  padding: 15px 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-logo {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 26px;
+  color: var(--blauw-donker);
+}
+
+.header-title p {
+  margin: 3px 0 0 0;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Button naar de schoolwebsite */
+.btn-website {
+  background: linear-gradient(135deg, #5CB838, #469229);
+  color: var(--wit);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  box-shadow: 0 4px 10px rgba(92, 184, 56, 0.3);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-website:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(92, 184, 56, 0.4);
+}
+
+/* Hoofdcontainer */
+.container {
+  background: var(--wit);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: var(--blauw-donker);
+  margin-top: 0;
+}
+
+label {
+  font-size: 18px;
+  color: var(--blauw-donker);
+  font-weight: 600;
+}
+
+/* Inputveld */
+input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 2px solid var(--groen);
+  font-size: 20px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: var(--blauw);
+}
+
+/* Knoppen algemeen */
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  background: var(--groen);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Office Knoppen */
+.btn-teams { background-color: #6264A7; }
+.btn-word { background-color: #2B579A; }
+.btn-powerpoint { background-color: #D24726; }
+.btn-onedrive { background-color: #0078D4; }
+.btn-outlook { background-color: #0072C6; }
+
+/* Email display & Kopieerknop */
+#emailDisplay {
+  margin-top: 20px;
+  font-size: 22px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--blauw-donker);
+  background: var(--lichtblauw);
+  padding: 12px;
+  border-radius: 10px;
+  word-break: break-all;
+  min-height: 28px;
+}
+
+.copy-button {
+  display: none;
+  background-color: var(--groen);
+  margin-top: 10px;
+}
+
+.copy-button:hover {
+  background-color: var(--groen-donker);
+}
+
+/* Responsive layout voor mobiel */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .header-left {
+    flex-direction: column;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Nieuwe Header -->
+<header class="header">
+  <div class="header-left">
+    <!-- Verwijs naar het meegestuurde bestand van het logo -->
+    <img src="klavernest_logo2015_klein.jpg" alt="Logo 't Klavernest" class="header-logo">
+    <div class="header-title">
+      <h1>Loginhelper</h1>
+      <p>Vrije Basisschool Wechelderzande</p>
+    </div>
+  </div>
+  <a href="https://www.klavernest.be" target="_blank" class="btn-website">
+    🌐 Naar de schoolwebsite
+  </a>
+</header>
+
+<!-- Hoofdcontent -->
+<div class="container">
+
+  <div>
+    <h2>Aanmelden leerling</h2>
+    <label for="s">Typ je S-nummer:</label>
+    <input id="s" type="text" placeholder="bijv. 123456" oninput="makeEmail()">
+
+    <div id="emailDisplay"></div>
+
+    <button id="copyBtn" class="copy-button" onclick="copyEmail()">📋 Kopieer e-mailadres</button>
+
+    <textarea id="hiddenCopyBox" style="opacity:0; position:absolute; left:-9999px;"></textarea>
+  </div>
+
+  <div>
+    <h2>Office Apps</h2>
+
+    <button class="btn-teams" onclick="openApp('teams')">Teams</button>
+    <button class="btn-word" onclick="openApp('word')">Word</button>
+    <button class="btn-powerpoint" onclick="openApp('powerpoint')">PowerPoint</button>
+    <button class="btn-onedrive" onclick="openApp('onedrive')">OneDrive</button>
+    <button class="btn-outlook" onclick="openApp('outlook')">Outlook</button>
+  </div>
+
+</div>
+
+<script>
+let currentEmail = "";
+
+function makeEmail() {
+  let raw = document.getElementById("s").value.trim();
+
+  if (raw.toLowerCase().startsWith("s")) raw = raw.slice(1);
+
+  if (!/^[0-9]{6}$/.test(raw)) {
+    document.getElementById("emailDisplay").textContent = "";
+    currentEmail = "";
+    document.getElementById("copyBtn").style.display = "none";
+    return;
+  }
+
+  currentEmail = "s" + raw + "@leerling.klavernest.be";
+
+  document.getElementById("emailDisplay").textContent = currentEmail;
+  document.getElementById("copyBtn").style.display = "block";
+}
+
+function copyEmail() {
+  const box = document.getElementById("hiddenCopyBox");
+  box.value = currentEmail;
+  box.select();
+  document.execCommand("copy");
+  alert("E-mailadres gekopieerd naar het klembord!");
+}
+
+function openApp(app) {
+
+  if (!currentEmail) {
+    alert("⚠️ Typ eerst een geldig S-nummer van 6 cijfers.");
+    return;
+  }
+
+  let url = "";
+
+  switch(app) {
+    case "teams":
+      url = "https://teams.microsoft.com/?login_hint=" + currentEmail;
+      break;
+
+    case "word":
+      url = "https://www.office.com/launch/word?auth=2&login_hint=" + currentEmail;
+      break;
+
+    case "powerpoint":
+      url = "https://www.office.com/launch/powerpoint?auth=2&login_hint=" + currentEmail;
+      break;
+
+    case "onedrive":
+      url = "https://www.office.com/launch/onedrive?auth=2&login_hint=" + currentEmail;
+      break;
+
+    case "outlook":
+      url = "https://www.office.com/launch/outlook?auth=2&login_hint=" + currentEmail;
+      break;
+  }
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
